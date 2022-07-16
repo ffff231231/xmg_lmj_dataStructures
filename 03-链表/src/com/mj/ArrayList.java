@@ -1,7 +1,5 @@
 package com.mj;
 
-import org.omg.CORBA.Object;
-
 public class ArrayList<E> extends AbstractList<E> {
 
     /**

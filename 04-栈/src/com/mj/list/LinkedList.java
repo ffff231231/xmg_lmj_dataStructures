@@ -1,4 +1,4 @@
-package com.mj;
+package com.mj.list;
 
 public class LinkedList<E> extends AbstractList<E> {
     private Node<E> first;

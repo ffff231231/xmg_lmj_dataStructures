@@ -1,11 +1,7 @@
-package com.mj;
+package com.mj.list;
 
 
-public class ArrayList<E> {
-    /**
-     * 元素的数量
-     */
-    private int size;
+public class ArrayList<E> extends AbstractList<E> {
 
     /**
      * 所有的元素
@@ -13,27 +9,10 @@ public class ArrayList<E> {
     private E[] elements;
 
     private final static int DEFAULT_CAPACITY = 10;
-    private final static int DEFAULT_NOT_FOUND = -1;
-
-    private void rangeCheck(int index) {
-        if (index < 0 || index >= size) {
-            outOfBounds(index);
-        }
-    }
-
-    private void rangeCheckForAdd(int index) {
-        if (index < 0 || index > size) {
-            outOfBounds(index);
-        }
-
-    }
-    
-    private void outOfBounds(int index) {
-        throw new IndexOutOfBoundsException("Index:" + index + ",Size:" + size);
-    }
 
     /**
      * 保证要有capacity的容量
+     *
      * @param capacity
      */
     private void ensureCapacity(int capacity) {
@@ -51,30 +30,14 @@ public class ArrayList<E> {
 
         System.out.println(oldCapacity + "扩容为：" + newCapacity);
     }
-    
+
     public ArrayList(int capacity) {
-        capacity = (capacity < DEFAULT_CAPACITY ? DEFAULT_CAPACITY :capacity );
+        capacity = (capacity < DEFAULT_CAPACITY ? DEFAULT_CAPACITY : capacity);
         elements = (E[]) new Object[capacity];
     }
 
     public ArrayList() {
         this(DEFAULT_CAPACITY);
-    }
-
-    /**
-     * 获取元素的数量
-     * @return
-     */
-    public int size() {
-        return size;
-    }
-
-    /**
-     * 判断是否为空
-     * @return
-     */
-    public boolean isEmpty() {
-        return size == 0;
     }
 
     /**
@@ -87,21 +50,18 @@ public class ArrayList<E> {
         size = 0;
     }
 
-
-    /**
-     * 添加元素到尾部
-     * @param element
-     */
-    public void add(E element) {
-        add(size, element);
-    }
-
     /**
      * 在index位置插入一个元素
+     *
      * @param index
      * @param element
      */
     public void add(int index, E element) {
+        /**
+         * 最好：O(1)
+         * 最坏：O(n)
+         * 平均：O(n)
+         */
         rangeCheckForAdd(index);
 
         ensureCapacity(size + 1);
@@ -115,15 +75,16 @@ public class ArrayList<E> {
 
     /**
      * 获取index位置的元素
+     *
      * @param index
      * @return
      */
-    public E get(int index) {
+    public E get(int index) { // O(1)
         rangeCheck(index);
         return elements[index];
     }
 
-    public E set(int index, E element) {
+    public E set(int index, E element) {// O(1)
         rangeCheck(index);
         E old = elements[index];
         elements[index] = element;
@@ -132,6 +93,7 @@ public class ArrayList<E> {
 
     /**
      * 查看元素的索引
+     *
      * @param element
      * @return
      */
@@ -149,25 +111,20 @@ public class ArrayList<E> {
     }
 
     /**
-     * 是否包含某个元素
-     * @param element
-     * @return
-     */
-    public boolean contains(E element) {
-        return indexOf(element) != DEFAULT_NOT_FOUND;
-    }
-
-    /**
      * 删除index位置的元素
+     *
      * @param index
      * @return
      */
     public E remove(int index) {
-        if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException("Index:" + index + ",Size:" + size);
-        }
+        /**
+         * 最好：O(1)
+         * 最坏：O(n)
+         * 平均：O(n)
+         */
+        rangeCheck(index);
 
-         E old  = elements[index];
+        E old = elements[index];
 
         for (int i = index + 1; i < size; i++) {
             elements[i - 1] = elements[i];

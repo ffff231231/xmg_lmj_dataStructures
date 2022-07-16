@@ -1,14 +1,27 @@
 package com.mj;
 
-public class Main {
-    public static void main(String[] args) {
-        List<Integer> list = new LinkedList<>();
-        list.add(20);
-        list.add(0, 10);
-        list.add(30);
-        list.add(list.size(), 40);
+import com.mj.circle.CircleLinkedList;
 
-        list.remove(1);
-        System.out.println(list);
+public class Main {
+
+    static void josephus() {
+        CircleLinkedList<Integer> list = new CircleLinkedList<>();
+        for (int i = 1; i <= 8; i++) {
+            list.add(i);
+        }
+
+        // 指向头结点（指向1）
+        list.reset();
+
+        while(!list.isEmpty()) {
+            list.next();
+            list.next();
+            System.out.println(list.remove());
+        }
+
+    }
+
+    public static void main(String[] args) {
+        josephus();
     }
 }

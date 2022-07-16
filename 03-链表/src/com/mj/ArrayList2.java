@@ -1,7 +1,5 @@
 package com.mj;
 
-import org.omg.CORBA.Object;
-
 /**
  * 有动态缩容操作
  * @param <E>
@@ -53,6 +51,9 @@ public class ArrayList2<E> extends AbstractList<E> {
             elements[i] = null;
         }
         size = 0;
+        if (elements != null && elements.length > DEFAULT_CAPACITY) {
+            elements = (E[]) new Object[DEFAULT_CAPACITY];
+        }
     }
 
     /**
@@ -135,6 +136,9 @@ public class ArrayList2<E> extends AbstractList<E> {
             elements[i - 1] = elements[i];
         }
         elements[--size] = null;
+
+        trim();
+
         return old;
     }
 
