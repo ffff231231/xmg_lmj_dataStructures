@@ -23,7 +23,7 @@ public class Main {
     }
 
     static void test1() {
-        Integer[] data = {7, 4, 9, 2, 5, 8, 11, 3};
+        Integer[] data = {7, 4, 9, 2, 5, 8, 11, 10, 3, 1, 12};
         BinarySearchTree<Integer> bst = new BinarySearchTree<>();
 
         for (int i = 0; i < data.length; i++) {
@@ -31,10 +31,20 @@ public class Main {
         }
 
         BinaryTrees.println(bst);
+
+//        bst.levelOrder(new BinarySearchTree.Visitor<Integer>() {
+//            @Override
+//            public boolean visit(Integer element) {
+//                System.out.print(element + " ");
+//                return element == 2 ? true : false;
+//            }
+//        });
+
+        System.out.println(bst.height1());
     }
 
     static void test2() {
-        Integer[] data = {7, 4, 9, 2, 5, 8, 11, 3};
+        Integer[] data = {7, 4, 9, 2, 5, 8, 11, 3, 1, 12};
 
         BinarySearchTree<Person> bst1 = new BinarySearchTree<>();
         for (int i = 0; i < data.length; i++) {
