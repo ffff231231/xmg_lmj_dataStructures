@@ -27,13 +27,14 @@ public class ArrayList<E> {
         }
 
     }
-    
+
     private void outOfBounds(int index) {
         throw new IndexOutOfBoundsException("Index:" + index + ",Size:" + size);
     }
 
     /**
      * 保证要有capacity的容量
+     *
      * @param capacity
      */
     private void ensureCapacity(int capacity) {
@@ -51,9 +52,9 @@ public class ArrayList<E> {
 
         System.out.println(oldCapacity + "扩容为：" + newCapacity);
     }
-    
+
     public ArrayList(int capacity) {
-        capacity = (capacity < DEFAULT_CAPACITY ? DEFAULT_CAPACITY :capacity );
+        capacity = (capacity < DEFAULT_CAPACITY ? DEFAULT_CAPACITY : capacity);
         elements = (E[]) new Object[capacity];
     }
 
@@ -63,6 +64,7 @@ public class ArrayList<E> {
 
     /**
      * 获取元素的数量
+     *
      * @return
      */
     public int size() {
@@ -71,6 +73,7 @@ public class ArrayList<E> {
 
     /**
      * 判断是否为空
+     *
      * @return
      */
     public boolean isEmpty() {
@@ -90,6 +93,7 @@ public class ArrayList<E> {
 
     /**
      * 添加元素到尾部
+     *
      * @param element
      */
     public void add(E element) {
@@ -98,6 +102,7 @@ public class ArrayList<E> {
 
     /**
      * 在index位置插入一个元素
+     *
      * @param index
      * @param element
      */
@@ -115,6 +120,7 @@ public class ArrayList<E> {
 
     /**
      * 获取index位置的元素
+     *
      * @param index
      * @return
      */
@@ -132,6 +138,7 @@ public class ArrayList<E> {
 
     /**
      * 查看元素的索引
+     *
      * @param element
      * @return
      */
@@ -148,8 +155,20 @@ public class ArrayList<E> {
         return DEFAULT_NOT_FOUND;
     }
 
+//    public int indexOf2(E element) {
+//        for (int i = 0; i < size; i++) {
+//            if (valEquals(element, elements[i])) return i;
+//        }
+//        return DEFAULT_NOT_FOUND;
+//    }
+//
+//    private boolean valEquals(Object v1, Object v2) {
+//        return v1 == null ? v2 == null : v1.equals(v2);
+//    }
+
     /**
      * 是否包含某个元素
+     *
      * @param element
      * @return
      */
@@ -159,6 +178,7 @@ public class ArrayList<E> {
 
     /**
      * 删除index位置的元素
+     *
      * @param index
      * @return
      */
@@ -167,7 +187,7 @@ public class ArrayList<E> {
             throw new IndexOutOfBoundsException("Index:" + index + ",Size:" + size);
         }
 
-         E old  = elements[index];
+        E old = elements[index];
 
         for (int i = index + 1; i < size; i++) {
             elements[i - 1] = elements[i];
